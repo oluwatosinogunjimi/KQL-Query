@@ -12,6 +12,7 @@ Each rule is documented end-to-end: the query itself, alert configuration, entit
 |---|---|---|---|
 | [Svchost Execution from Unusual Location](detections/defense-evasion/svchost-masquerading.md) | Defense Evasion | Masquerading ([T1036](https://attack.mitre.org/techniques/T1036/)) | High |
 | [PowerShell DownloadString Remote Execution](detections/execution/powershell-downloadstring.md) | Execution | Command and Scripting Interpreter ([T1059](https://attack.mitre.org/techniques/T1059/)) | High |
+| [Suspicious Office Child Process](detections/execution/suspicious-office-child-process.md) | Execution | User Execution ([T1204](https://attack.mitre.org/techniques/T1204/)) | High |
 | [Local Administrators Group Modification via Command Line](detections/privilege-escalation/local-admin-group-modification.md) | Privilege Escalation | Account Manipulation ([T1098](https://attack.mitre.org/techniques/T1098/)) | High |
 | [User Account Creation via Command Line](detections/privilege-escalation/net-user-add.md) | Persistence, Privilege Escalation | Valid Accounts ([T1078](https://attack.mitre.org/techniques/T1078/)) | Medium |
 
