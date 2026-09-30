@@ -3,6 +3,9 @@
 ## Title
 Suspicious Office Child Process
 
+## Goal (ADS)
+Catch a malicious document running code: an Office application spawning a command interpreter, script host or download utility.
+
 ## Description
 Detects known attacker-favoured LOLBins and interpreter binaries spawned directly by a Microsoft Office application (Word, Excel, PowerPoint, Outlook, OneNote, Publisher, Visio). Office processes should not spawn command interpreters, scripting hosts, or download utilities under normal operation. This pattern is commonly associated with malicious macros, phishing document execution, and initial access via Office-based payloads.
 
@@ -11,8 +14,27 @@ Detects known attacker-favoured LOLBins and interpreter binaries spawned directl
 - Technique: Command and Scripting Interpreter (T1059), User Execution (T1204), User Execution: Malicious File (T1204.002)
 - Technique ID: T1059, T1204, T1204.002
 
+## Strategy Abstract (ADS)
+`DeviceProcessEvents` where the parent is an Office application (Word, Excel, PowerPoint, Outlook, OneNote, Publisher, Visio) and the child is one of a list of interpreters and living-off-the-land binaries (LOLBins) attackers favour.
+
+## Technical Context (ADS)
+A malicious macro, embedded object or exploit makes the Office process start cmd, PowerShell, mshta, a script host or a LOLBin to fetch and run the next stage. The child's command line usually carries a URL, an encoded payload or a path in `%Temp%`, and the document typically arrived by email or download shortly before. Follow-on network connections and new files on the same device confirm execution.
+
+## Blind Spots and Assumptions (ADS)
+- Indirect launches that break the parent-child link: macros that start processes through WMI (parent becomes WmiPrvSE.exe), scheduled tasks, COM/DCOM or services.
+- Office applications not in the list, for example msaccess.exe and the new Outlook (olk.exe).
+- LOLBins not in the list (for example cmstp.exe, hh.exe, msxsl.exe, explorer.exe used as a launcher).
+- Renamed binaries: the match is on `FileName`; `ProcessVersionInfoOriginalFileName` would catch renames.
+- Payloads that run entirely inside the Office process (in-memory shellcode, injected DLLs) without spawning a child.
+
+## False Positives (ADS)
+- Line-of-business macros and add-ins that call cmd or PowerShell (finance and reporting workbooks are common).
+- Document management and printing plug-ins that shell out to helper commands.
+- Users opening attached scripts or installers directly from Outlook (parent outlook.exe).
+
 ## Severity
 - High
+- Why: Office spawning an interpreter is a well-established initial-access pattern with a low benign rate once known macros are baselined.
 
 ## Frequency / Lookback
 - Run frequency: NRT
@@ -73,7 +95,13 @@ DeviceProcessEvents
 - File: FileName
 - Process: ProcessCommandLine
 
+## Validation (ADS)
+| Date | Method | Environment | Result |
+|------|--------|-------------|--------|
+| — | Atomic Red Team | Windows test device, Defender XDR | Custom rule fired |
+
 ## Recommended Actions
+- Triage playbook: [Office Application Spawned a Suspicious Process](https://oluwatosinogunjimi.github.io/soc-triage-trees/#office-child-process)
 - Review `ProcessCommandLine` for the spawned interpreter/utility and determine whether it references a remote URL, encoded payload, or suspicious arguments.
 - Confirm the Office document's origin (email attachment, download, network share) and whether macros were enabled.
 - Check `SHA256` and `FolderPath` of the spawned process against threat intelligence.

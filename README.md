@@ -6,21 +6,23 @@ A personal library of KQL threat hunting queries and custom detection rules for 
 
 Each rule is documented end-to-end: the query itself, alert configuration, entity mapping, analyst response steps, and a tuning log — the same format used to take a hunting query from Advanced Hunting into a production custom detection rule.
 
+Each rule also follows Palantir's [Alerting and Detection Strategy](https://github.com/palantir/alerting-detection-strategy-framework) (ADS) framework: its goal, how the logic works, what the telemetry looks like, its blind spots and assumptions, known false positives, and a validation log showing how it was proven to fire. Every rule links to its triage playbook in [Triage Trees](https://oluwatosinogunjimi.github.io/soc-triage-trees/).
+
 ## Detections
 
 | Rule | Tactic | Technique | Severity |
 |---|---|---|---|
-| [Svchost Execution from Unusual Location](detections/defense-evasion/svchost-masquerading.md) | Defense Evasion | Masquerading ([T1036](https://attack.mitre.org/techniques/T1036/)) | High |
-| [PowerShell DownloadString Remote Execution](detections/execution/powershell-downloadstring.md) | Execution | Command and Scripting Interpreter ([T1059](https://attack.mitre.org/techniques/T1059/)) | High |
+| [Svchost Execution from Unusual Location](detections/defense-evasion/svchost-masquerading.md) | Defense Evasion | Masquerading: Match Legitimate Name or Location ([T1036.005](https://attack.mitre.org/techniques/T1036/005/)) | High |
+| [PowerShell DownloadString Remote Execution](detections/execution/powershell-downloadstring.md) | Execution | Command and Scripting Interpreter: PowerShell ([T1059.001](https://attack.mitre.org/techniques/T1059/001/)) | High |
 | [Suspicious Office Child Process](detections/execution/suspicious-office-child-process.md) | Execution | User Execution ([T1204](https://attack.mitre.org/techniques/T1204/)) | High |
 | [Local Administrators Group Modification via Command Line](detections/privilege-escalation/local-admin-group-modification.md) | Privilege Escalation | Account Manipulation ([T1098](https://attack.mitre.org/techniques/T1098/)) | High |
-| [User Account Creation via Command Line](detections/privilege-escalation/net-user-add.md) | Persistence, Privilege Escalation | Valid Accounts ([T1078](https://attack.mitre.org/techniques/T1078/)) | Medium |
+| [User Account Creation via Command Line](detections/privilege-escalation/net-user-add.md) | Persistence | Create Account: Local Account ([T1136.001](https://attack.mitre.org/techniques/T1136/001/)) | Medium |
 
 ## Repository structure
 
 - `detections/` — Detection rules, organized by ATT&CK tactic (one subfolder per tactic; only tactics with a published rule are present).
 - `tuning/` — Tuning notes and exclusion history for reducing false positives without losing coverage.
-- `RULE_TEMPLATE.md` — The standard format used to document every rule in this repo: description, MITRE mapping, severity, KQL query, alert settings, entity mapping, recommended actions, and a tuning log.
+- `RULE_TEMPLATE.md` — The standard format used to document every rule in this repo: goal, description, MITRE mapping, strategy, technical context, blind spots, false positives, severity with rationale, KQL query, alert settings, entity mapping, validation log, recommended actions with the linked triage playbook, and a tuning log.
 
 ## How to use a rule
 
