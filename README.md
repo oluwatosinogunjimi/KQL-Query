@@ -6,6 +6,8 @@ A personal library of KQL threat hunting queries and custom detection rules for 
 
 Each rule is documented end-to-end: the query itself, alert configuration, entity mapping, analyst response steps, and a tuning log — the same format used to take a hunting query from Advanced Hunting into a production custom detection rule.
 
+Each rule also follows Palantir's [Alerting and Detection Strategy](https://github.com/palantir/alerting-detection-strategy-framework) (ADS) framework: its goal, how the logic works, what the telemetry looks like, its blind spots and assumptions, known false positives, and a validation log showing how it was proven to fire. Every rule links to its triage playbook in [Triage Trees](https://oluwatosinogunjimi.github.io/soc-triage-trees/).
+
 ## Detections
 
 | Rule | Tactic | Technique | Severity |
@@ -20,7 +22,7 @@ Each rule is documented end-to-end: the query itself, alert configuration, entit
 
 - `detections/` — Detection rules, organized by ATT&CK tactic (one subfolder per tactic; only tactics with a published rule are present).
 - `tuning/` — Tuning notes and exclusion history for reducing false positives without losing coverage.
-- `RULE_TEMPLATE.md` — The standard format used to document every rule in this repo: description, MITRE mapping, severity, KQL query, alert settings, entity mapping, recommended actions, and a tuning log.
+- `RULE_TEMPLATE.md` — The standard format used to document every rule in this repo: goal, description, MITRE mapping, strategy, technical context, blind spots, false positives, severity with rationale, KQL query, alert settings, entity mapping, validation log, recommended actions with the linked triage playbook, and a tuning log.
 
 ## How to use a rule
 
