@@ -73,7 +73,7 @@ DeviceProcessEvents
 ## Validation (ADS)
 | Date | Method | Environment | Result |
 |------|--------|-------------|--------|
-| — | Atomic Red Team | Windows test device, Defender XDR | Alert raised |
+| — | Atomic Red Team | Windows test device, Defender XDR | Custom rule fired |
 
 ## Recommended Actions
 - Triage playbook: [Local Account Created or Added to Administrators](https://oluwatosinogunjimi.github.io/soc-triage-trees/#local-admin-added)

@@ -105,7 +105,7 @@ union
 ## Validation (ADS)
 | Date | Method | Environment | Result |
 |------|--------|-------------|--------|
-| — | Atomic Red Team | Windows test device, Defender XDR | Alert raised |
+| — | Atomic Red Team | Windows test device, Defender XDR | Custom rule fired |
 
 ## Recommended Actions
 - Triage playbook: [Malware or EDR Detection](https://oluwatosinogunjimi.github.io/soc-triage-trees/#edr-malware-detection)

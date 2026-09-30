@@ -106,7 +106,7 @@ union
 ## Validation (ADS)
 | Date | Method | Environment | Result |
 |------|--------|-------------|--------|
-| 2026-09-15 | Atomic Red Team | Windows test device, Defender XDR | Alert raised |
+| 2026-09-15 | Atomic Red Team | Windows test device, Defender XDR | Custom rule fired |
 
 ## Recommended Actions
 - Triage playbook: [Suspicious PowerShell or LOLBin Execution](https://oluwatosinogunjimi.github.io/soc-triage-trees/#suspicious-powershell)

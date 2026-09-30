@@ -98,7 +98,7 @@ DeviceProcessEvents
 ## Validation (ADS)
 | Date | Method | Environment | Result |
 |------|--------|-------------|--------|
-| — | Atomic Red Team | Windows test device, Defender XDR | Alert raised |
+| — | Atomic Red Team | Windows test device, Defender XDR | Custom rule fired |
 
 ## Recommended Actions
 - Triage playbook: [Office Application Spawned a Suspicious Process](https://oluwatosinogunjimi.github.io/soc-triage-trees/#office-child-process)
