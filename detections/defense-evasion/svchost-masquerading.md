@@ -11,8 +11,8 @@ Detects svchost.exe executed or created outside legitimate Windows directories. 
 
 ## MITRE Mapping
 - Tactic: Defense Evasion
-- Technique: Masquerading
-- Technique ID: T1036
+- Technique: Masquerading: Match Legitimate Name or Location
+- Technique ID: T1036.005
 
 ## Strategy Abstract (ADS)
 Two branches unioned together. `DeviceProcessEvents` catches svchost.exe starting from any folder other than System32, SysWOW64 or WinSxS. `DeviceFileEvents` catches a file named svchost.exe being created or renamed outside those folders, which can fire before the binary ever runs.

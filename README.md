@@ -12,11 +12,11 @@ Each rule also follows Palantir's [Alerting and Detection Strategy](https://gith
 
 | Rule | Tactic | Technique | Severity |
 |---|---|---|---|
-| [Svchost Execution from Unusual Location](detections/defense-evasion/svchost-masquerading.md) | Defense Evasion | Masquerading ([T1036](https://attack.mitre.org/techniques/T1036/)) | High |
-| [PowerShell DownloadString Remote Execution](detections/execution/powershell-downloadstring.md) | Execution | Command and Scripting Interpreter ([T1059](https://attack.mitre.org/techniques/T1059/)) | High |
+| [Svchost Execution from Unusual Location](detections/defense-evasion/svchost-masquerading.md) | Defense Evasion | Masquerading: Match Legitimate Name or Location ([T1036.005](https://attack.mitre.org/techniques/T1036/005/)) | High |
+| [PowerShell DownloadString Remote Execution](detections/execution/powershell-downloadstring.md) | Execution | Command and Scripting Interpreter: PowerShell ([T1059.001](https://attack.mitre.org/techniques/T1059/001/)) | High |
 | [Suspicious Office Child Process](detections/execution/suspicious-office-child-process.md) | Execution | User Execution ([T1204](https://attack.mitre.org/techniques/T1204/)) | High |
 | [Local Administrators Group Modification via Command Line](detections/privilege-escalation/local-admin-group-modification.md) | Privilege Escalation | Account Manipulation ([T1098](https://attack.mitre.org/techniques/T1098/)) | High |
-| [User Account Creation via Command Line](detections/privilege-escalation/net-user-add.md) | Persistence, Privilege Escalation | Valid Accounts ([T1078](https://attack.mitre.org/techniques/T1078/)) | Medium |
+| [User Account Creation via Command Line](detections/privilege-escalation/net-user-add.md) | Persistence | Create Account: Local Account ([T1136.001](https://attack.mitre.org/techniques/T1136/001/)) | Medium |
 
 ## Repository structure
 

@@ -11,8 +11,8 @@ Detects use of PowerShell's `DownloadString()` method to download content from a
 
 ## MITRE Mapping
 - Tactic: Execution
-- Technique: Command and Scripting Interpreter (T1059), PowerShell (T1086)
-- Technique ID: T1059, T1086
+- Technique: Command and Scripting Interpreter: PowerShell
+- Technique ID: T1059.001
 
 ## Strategy Abstract (ADS)
 Two branches unioned together. `DeviceProcessEvents` matches powershell.exe or pwsh.exe command lines containing `DownloadString` and `http`. `DeviceEvents` with ActionType `PowerShellCommand` matches the same strings in the PowerShell command telemetry, which surfaces commands that were obfuscated or encoded on the command line. Cloud metadata addresses and Chocolatey are excluded.
