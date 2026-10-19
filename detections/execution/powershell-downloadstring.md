@@ -10,9 +10,13 @@ Catch PowerShell pulling a script or payload straight into memory from a URL wit
 Detects use of PowerShell's `DownloadString()` method to download content from a remote URL directly into memory, bypassing the filesystem entirely. When combined with `Invoke-Expression` (IEX), this creates a fileless execution chain where a remote script is downloaded and executed without ever touching disk — a technique commonly used in initial access, post-exploitation, and C2 stager delivery. Covers both the process command line (where the full command is visible) and PowerShell script block logging (where obfuscated or multi-stage scripts surface their decoded content). Known legitimate automation tools, cloud metadata endpoints, and package managers are excluded.
 
 ## MITRE Mapping
-- Tactic: Execution
+- ATT&CK version: v20 (Enterprise)
+- Tactic: Execution (TA0002)
 - Technique: Command and Scripting Interpreter: PowerShell
 - Technique ID: T1059.001
+- Detection Strategy: [DET0455](https://attack.mitre.org/detectionstrategies/DET0455)
+- Analytic (Windows): [AN1252](https://attack.mitre.org/detectionstrategies/DET0455#AN1252)
+- Telemetry: DeviceProcessEvents, DeviceEvents (`PowerShellCommand`) (the MITRE analytic uses Sysmon 1 and 7, and PowerShell 400, 403 and 4103–4106)
 
 ## Strategy Abstract (ADS)
 Two branches unioned together. `DeviceProcessEvents` matches powershell.exe or pwsh.exe command lines containing `DownloadString` and `http`. `DeviceEvents` with ActionType `PowerShellCommand` matches the same strings in the PowerShell command telemetry, which surfaces commands that were obfuscated or encoded on the command line. Cloud metadata addresses and Chocolatey are excluded.

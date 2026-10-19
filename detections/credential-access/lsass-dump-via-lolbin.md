@@ -10,9 +10,13 @@ Catch an attacker dumping LSASS memory to steal credentials, with priority on ad
 Detects command-line attempts to dump the memory of lsass.exe using the comsvcs.dll MiniDump export through rundll32, common dump utilities (ProcDump, RdrLeakDiag, SQLDumper, createdump, Dumpert) targeting lsass, and Mimikatz-style command strings. A successful dump gives the attacker cleartext passwords, NTLM hashes and Kerberos tickets for every account logged on to the device. On an admin or jump host, that means access to every system managed from it.
 
 ## MITRE Mapping
-- Tactic: Credential Access
+- ATT&CK version: v20 (Enterprise)
+- Tactic: Credential Access (TA0006); Stealth (TA0005) for T1218.011
 - Technique: OS Credential Dumping: LSASS Memory (T1003.001), System Binary Proxy Execution: Rundll32 (T1218.011)
 - Technique ID: T1003.001, T1218.011
+- Detection Strategy: [DET0363](https://attack.mitre.org/detectionstrategies/DET0363) (T1003.001), [DET0475](https://attack.mitre.org/detectionstrategies/DET0475) (T1218.011)
+- Analytic (Windows): [AN1030](https://attack.mitre.org/detectionstrategies/DET0363#AN1030) (T1003.001), [AN1308](https://attack.mitre.org/detectionstrategies/DET0475#AN1308) (T1218.011)
+- Telemetry: DeviceProcessEvents (the MITRE analytics use Sysmon 1, 3, 7, 10, 11, 13–14, 22 and Security 4673)
 
 ## Strategy Abstract (ADS)
 `DeviceProcessEvents` matched on three branches: rundll32 (including renamed copies via `ProcessVersionInfoOriginalFileName`) calling comsvcs.dll by the MiniDump name or its ordinal (#24), a known dump utility whose command line references lsass, or Mimikatz module strings. The comsvcs branch also covers the ordinal obfuscation patterns used to avoid matching on "MiniDump".

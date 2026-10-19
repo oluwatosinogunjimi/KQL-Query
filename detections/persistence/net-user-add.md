@@ -10,9 +10,13 @@ Catch a local user account being created from the command line, often a backdoor
 Detects creation of local user accounts using command-line utilities. This behavior is commonly associated with persistence or unauthorized access.
 
 ## MITRE Mapping
-- Tactic: Persistence
+- ATT&CK version: v20 (Enterprise)
+- Tactic: Persistence (TA0003)
 - Technique: Create Account: Local Account
 - Technique ID: T1136.001
+- Detection Strategy: [DET0447](https://attack.mitre.org/detectionstrategies/DET0447)
+- Analytic (Windows): [AN1235](https://attack.mitre.org/detectionstrategies/DET0447#AN1235)
+- Telemetry: DeviceProcessEvents (the MITRE analytic uses Security 4720 and Sysmon 1)
 
 ## Strategy Abstract (ADS)
 `DeviceProcessEvents` where the command line matches `net user <name> ... /add`.

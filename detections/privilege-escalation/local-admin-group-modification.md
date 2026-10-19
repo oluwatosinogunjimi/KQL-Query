@@ -10,9 +10,13 @@ Catch an account being added to the local Administrators group from the command 
 Detects attempts to add accounts to the local Administrators group using command-line utilities. This behavior is commonly associated with privilege escalation during post-exploitation.
 
 ## MITRE Mapping
-- Tactic: Privilege Escalation
+- ATT&CK version: v20 (Enterprise)
+- Tactic: Privilege Escalation (TA0004), Persistence (TA0003)
 - Technique: Account Manipulation
 - Technique ID: T1098
+- Detection Strategy: [DET0096](https://attack.mitre.org/detectionstrategies/DET0096)
+- Analytic (Windows): [AN0265](https://attack.mitre.org/detectionstrategies/DET0096#AN0265)
+- Telemetry: DeviceProcessEvents (the MITRE analytic uses Security 4670, 4728, 4738 and Sysmon 1)
 
 ## Strategy Abstract (ADS)
 `DeviceProcessEvents` where the command line contains `net localgroup` (net.exe or net1.exe), the word `administrators` and `/add`.

@@ -14,9 +14,14 @@ The other sections record how to deploy it as a Defender XDR custom detection.
 ## Description
 
 ## MITRE Mapping
-- Tactic:
+<!-- Use the current ATT&CK release. Detection Strategy and Analytic IDs come from the technique's page (Detection section). Telemetry lists the Defender tables the query uses and the MITRE analytic's log sources. -->
+- ATT&CK version: v20 (Enterprise)
+- Tactic: (TA00xx)
 - Technique:
 - Technique ID:
+- Detection Strategy: DETxxxx
+- Analytic (Windows): ANxxxx
+- Telemetry:
 
 ## Strategy Abstract (ADS)
 <!-- How the logic works, in plain words: which table, which conditions, which exclusions. -->
