@@ -10,9 +10,13 @@ Catch malware disguised as svchost.exe by running or dropping a copy of it outsi
 Detects svchost.exe executed or created outside legitimate Windows directories. This is a strong indicator of masquerading.
 
 ## MITRE Mapping
-- Tactic: Defense Evasion
-- Technique: Masquerading: Match Legitimate Name or Location
+- ATT&CK version: v20 (Enterprise)
+- Tactic: Stealth (TA0005)
+- Technique: Masquerading: Match Legitimate Resource Name or Location
 - Technique ID: T1036.005
+- Detection Strategy: [DET0347](https://attack.mitre.org/detectionstrategies/DET0347)
+- Analytic (Windows): [AN0983](https://attack.mitre.org/detectionstrategies/DET0347#AN0983)
+- Telemetry: DeviceProcessEvents, DeviceFileEvents (the MITRE analytic uses Security 4688 and Sysmon 11)
 
 ## Strategy Abstract (ADS)
 Two branches unioned together. `DeviceProcessEvents` catches svchost.exe starting from any folder other than System32, SysWOW64 or WinSxS. `DeviceFileEvents` catches a file named svchost.exe being created or renamed outside those folders, which can fire before the binary ever runs.

@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-A personal library of KQL threat hunting queries and custom detection rules for **Microsoft Defender for Endpoint (MDE)** / Microsoft Defender XDR, built around **Advanced Hunting** and mapped to **MITRE ATT&CK**.
+A personal library of KQL threat hunting queries and custom detection rules for **Microsoft Defender for Endpoint (MDE)** / Microsoft Defender XDR, built around **Advanced Hunting** and mapped to **MITRE ATT&CK v20** (October 2026), including each technique's Detection Strategy (DET) and Analytic (AN) IDs.
 
 Each rule is documented end-to-end: the query itself, alert configuration, entity mapping, analyst response steps, and a tuning log — the same format used to take a hunting query from Advanced Hunting into a production custom detection rule.
 
@@ -12,11 +12,11 @@ Each rule also follows Palantir's [Alerting and Detection Strategy](https://gith
 
 | Rule | Tactic | Technique | Severity |
 |---|---|---|---|
-| [Svchost Execution from Unusual Location](detections/defense-evasion/svchost-masquerading.md) | Defense Evasion | Masquerading: Match Legitimate Name or Location ([T1036.005](https://attack.mitre.org/techniques/T1036/005/)) | High |
+| [Svchost Execution from Unusual Location](detections/stealth/svchost-masquerading.md) | Stealth | Masquerading: Match Legitimate Resource Name or Location ([T1036.005](https://attack.mitre.org/techniques/T1036/005/)) | High |
 | [PowerShell DownloadString Remote Execution](detections/execution/powershell-downloadstring.md) | Execution | Command and Scripting Interpreter: PowerShell ([T1059.001](https://attack.mitre.org/techniques/T1059/001/)) | High |
 | [Suspicious Office Child Process](detections/execution/suspicious-office-child-process.md) | Execution | User Execution ([T1204](https://attack.mitre.org/techniques/T1204/)) | High |
-| [Local Administrators Group Modification via Command Line](detections/privilege-escalation/local-admin-group-modification.md) | Privilege Escalation | Account Manipulation ([T1098](https://attack.mitre.org/techniques/T1098/)) | High |
-| [User Account Creation via Command Line](detections/privilege-escalation/net-user-add.md) | Persistence | Create Account: Local Account ([T1136.001](https://attack.mitre.org/techniques/T1136/001/)) | Medium |
+| [Local Administrators Group Modification via Command Line](detections/privilege-escalation/local-admin-group-modification.md) | Privilege Escalation, Persistence | Account Manipulation ([T1098](https://attack.mitre.org/techniques/T1098/)) | High |
+| [User Account Creation via Command Line](detections/persistence/net-user-add.md) | Persistence | Create Account: Local Account ([T1136.001](https://attack.mitre.org/techniques/T1136/001/)) | Medium |
 | [LSASS Memory Dump via LOLBin or Dump Utility](detections/credential-access/lsass-dump-via-lolbin.md) | Credential Access | OS Credential Dumping: LSASS Memory ([T1003.001](https://attack.mitre.org/techniques/T1003/001/)) | High |
 | [Unsanctioned Remote Access Tool Execution](detections/command-and-control/unsanctioned-remote-access-tool.md) | Command and Control | Remote Access Tools ([T1219](https://attack.mitre.org/techniques/T1219/)) | Medium |
 

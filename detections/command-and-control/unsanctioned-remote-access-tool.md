@@ -10,9 +10,13 @@ Catch an attacker gaining hands-on-keyboard control of a device through a legiti
 Detects commonly abused remote access and RMM tools (AnyDesk, TeamViewer, ScreenConnect, Quick Assist, Atera, Splashtop, NetSupport, RustDesk, Action1 and others) when they arrive on a device or are launched by a user or script. Organisations usually standardise on one or two approved tools, so any other remote access tool is either unauthorised IT activity or an attacker. These tools are signed and legitimate, so Defender rarely alerts on them, which is why vishing crews and ransomware operators rely on them for initial access and persistence.
 
 ## MITRE Mapping
-- Tactic: Command and Control
+- ATT&CK version: v20 (Enterprise)
+- Tactic: Command and Control (TA0011)
 - Technique: Remote Access Tools (T1219)
 - Technique ID: T1219
+- Detection Strategy: [DET0496](https://attack.mitre.org/detectionstrategies/DET0496)
+- Analytic (Windows): [AN1366](https://attack.mitre.org/detectionstrategies/DET0496#AN1366)
+- Telemetry: DeviceProcessEvents, DeviceFileEvents (the MITRE analytic uses Sysmon 1, 3, 11, 12–14, 22 and System 7045)
 
 ## Strategy Abstract (ADS)
 Two signals, unioned:

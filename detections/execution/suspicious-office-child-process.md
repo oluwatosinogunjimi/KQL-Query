@@ -10,9 +10,13 @@ Catch a malicious document running code: an Office application spawning a comman
 Detects known attacker-favoured LOLBins and interpreter binaries spawned directly by a Microsoft Office application (Word, Excel, PowerPoint, Outlook, OneNote, Publisher, Visio). Office processes should not spawn command interpreters, scripting hosts, or download utilities under normal operation. This pattern is commonly associated with malicious macros, phishing document execution, and initial access via Office-based payloads.
 
 ## MITRE Mapping
-- Tactic: Execution
+- ATT&CK version: v20 (Enterprise)
+- Tactic: Execution (TA0002)
 - Technique: Command and Scripting Interpreter (T1059), User Execution (T1204), User Execution: Malicious File (T1204.002)
 - Technique ID: T1059, T1204, T1204.002
+- Detection Strategy: [DET0516](https://attack.mitre.org/detectionstrategies/DET0516) (T1059), [DET0478](https://attack.mitre.org/detectionstrategies/DET0478) (T1204), [DET0294](https://attack.mitre.org/detectionstrategies/DET0294) (T1204.002)
+- Analytic (Windows): [AN1428](https://attack.mitre.org/detectionstrategies/DET0516#AN1428) (T1059), [AN1314](https://attack.mitre.org/detectionstrategies/DET0478#AN1314) (T1204), [AN0819](https://attack.mitre.org/detectionstrategies/DET0294#AN0819) (T1204.002)
+- Telemetry: DeviceProcessEvents (the MITRE analytics use Sysmon 1, 3, 11, 15, 22, Security 4688 and Application 1000)
 
 ## Strategy Abstract (ADS)
 `DeviceProcessEvents` where the parent is an Office application (Word, Excel, PowerPoint, Outlook, OneNote, Publisher, Visio) and the child is one of a list of interpreters and living-off-the-land binaries (LOLBins) attackers favour.
