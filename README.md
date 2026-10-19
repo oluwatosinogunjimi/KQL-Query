@@ -17,6 +17,8 @@ Each rule also follows Palantir's [Alerting and Detection Strategy](https://gith
 | [Suspicious Office Child Process](detections/execution/suspicious-office-child-process.md) | Execution | User Execution ([T1204](https://attack.mitre.org/techniques/T1204/)) | High |
 | [Local Administrators Group Modification via Command Line](detections/privilege-escalation/local-admin-group-modification.md) | Privilege Escalation | Account Manipulation ([T1098](https://attack.mitre.org/techniques/T1098/)) | High |
 | [User Account Creation via Command Line](detections/privilege-escalation/net-user-add.md) | Persistence | Create Account: Local Account ([T1136.001](https://attack.mitre.org/techniques/T1136/001/)) | Medium |
+| [LSASS Memory Dump via LOLBin or Dump Utility](detections/credential-access/lsass-dump-via-lolbin.md) | Credential Access | OS Credential Dumping: LSASS Memory ([T1003.001](https://attack.mitre.org/techniques/T1003/001/)) | High |
+| [Unsanctioned Remote Access Tool Execution](detections/command-and-control/unsanctioned-remote-access-tool.md) | Command and Control | Remote Access Tools ([T1219](https://attack.mitre.org/techniques/T1219/)) | Medium |
 
 ## Repository structure
 
