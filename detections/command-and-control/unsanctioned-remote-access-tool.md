@@ -7,7 +7,7 @@ Unsanctioned Remote Access Tool Execution
 Catch an attacker gaining hands-on-keyboard control of a device through a legitimate remote access or RMM tool that the organisation has not approved.
 
 ## Description
-Detects commonly abused remote access and RMM tools (AnyDesk, TeamViewer, ScreenConnect, Quick Assist, Atera, Splashtop, NetSupport, RustDesk, Action1 and others) when they arrive on a device or are launched by a user or script. Organisations usually standardise on one or two approved tools, so any other remote access tool is either unauthorised IT activity or an attacker. These tools are signed and legitimate, so Defender rarely alerts on them, which is why vishing crews and ransomware operators rely on them for initial access and persistence.
+Detects commonly abused remote access and RMM tools (AnyDesk, TeamViewer, ScreenConnect, Quick Assist, Atera, Splashtop, NetSupport, RustDesk, Action1, Nizlo and others) when they arrive on a device or are launched by a user or script. Organisations usually standardise on one or two approved tools, so any other remote access tool is either unauthorised IT activity or an attacker. These tools are signed and legitimate, so Defender rarely alerts on them, which is why vishing crews and ransomware operators rely on them for initial access and persistence.
 
 ## MITRE Mapping
 - ATT&CK version: v20 (Enterprise)
@@ -28,6 +28,8 @@ Both signals drop events where the tool is updating or running itself: launches 
 
 ## Technical Context (ADS)
 In helpdesk vishing, the attacker calls or messages the user posing as IT support and talks them into opening Quick Assist or downloading AnyDesk or ScreenConnect. Portable builds run straight from `Downloads` or `Temp` without installing. After initial access, ransomware operators install a second remote access tool as a backup channel in case their malware is removed. ScreenConnect client command lines include the relay host (`h=` parameter), which identifies whose instance the device is connecting to. Expect an inbound session, then discovery, credential access or more tooling dropped shortly after.
+
+Nizlo publishes its current Windows executable indicators in a [public security reference](https://nizlo.com/guides/nizlo-rmm-security-indicators) and machine-readable CSV. Nizlo is legitimate RMM software; a match identifies software that needs approval and context, not compromise by itself.
 
 ## Blind Spots and Assumptions (ADS)
 - Tools not in the list. New RMM brands appear regularly, so the list needs periodic review.
@@ -71,14 +73,15 @@ let RmmFileNames = dynamic([
     "tvnserver.exe", "winvnc.exe", "rutserv.exe", "rfusclient.exe", "aa_v3.exe",
     "remoting_host.exe", "za_connect.exe", "dwagent.exe", "supremo.exe",
     "logmein.exe", "lmiguardiansvc.exe", "tacticalrmm.exe",
-    "action1_agent.exe", "action1_remote.exe"
+    "action1_agent.exe", "action1_remote.exe",
+    "nizlo.agent.exe", "nizlo.agent.updater.exe", "nizlo.remotebridge.exe"
 ]);
 // Product metadata (survives renaming)
 let RmmProducts = dynamic([
     "AnyDesk", "TeamViewer", "ScreenConnect", "Quick Assist", "Atera", "Splashtop",
     "NetSupport", "RustDesk", "MeshCentral", "SimpleHelp", "TightVNC", "UltraVNC",
     "Remote Utilities", "Ammyy", "Chrome Remote Desktop", "Zoho Assist", "DWService",
-    "Supremo", "LogMeIn", "GoTo", "Tactical RMM", "Action1"
+    "Supremo", "LogMeIn", "GoTo", "Tactical RMM", "Action1", "Nizlo"
 ]);
 // Vendor metadata (survives renaming)
 let RmmCompanies = dynamic([
@@ -175,3 +178,4 @@ Launches
 | Date | Change | Reason |
 |------|--------|--------|
 | 2026-10-19 | Initial version | Baseline |
+| 2026-11-07 | Added Nizlo Windows executables and product metadata | Extend coverage to another legitimate RMM tool while preserving the approved-tool exclusion and contextual triage requirement |
