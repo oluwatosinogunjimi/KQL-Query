@@ -37,6 +37,10 @@ Each rule also follows Palantir's [Alerting and Detection Strategy](https://gith
 
 These queries are starting points, not drop-in production rules. Detection quality depends on your environment, telemetry coverage, and operational context — tuning is expected before deployment.
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Vendor-submitted additions of their own products are not accepted.
+
 ## License
 
 MIT — see [LICENSE](LICENSE).
